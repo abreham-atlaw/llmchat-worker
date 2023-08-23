@@ -3,15 +3,16 @@ import time
 from abc import ABC, abstractmethod
 
 class RequestProcessor(ABC):
-    def __init__(self, host):
+    def __init__(self, host: str, model_id: str):
         self.host = host
+        self.__model_id = model_id
 
     @abstractmethod
     def handle(self, request):
         pass
 
     def get_request(self):
-        url = f"{self.host}/api/request/get"
+        url = f"{self.host}/api/request/get?model={self.__model_id}"
         response = requests.get(url)
         data = response.json()
 
