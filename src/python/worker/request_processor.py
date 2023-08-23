@@ -43,8 +43,8 @@ class RequestProcessor(ABC):
     def start(self):
         while True:
             request_id, params = self.get_request()
-            print(f"[+]Processing request({request_id})")
             if request_id and params:
+                print(f"[+]Processing request({request_id})")
                 processed_response = self.handle(params)
                 self.send_response(request_id, processed_response)
             time.sleep(1)  # Wait for 1 second before checking for the next request
