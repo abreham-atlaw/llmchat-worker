@@ -1,14 +1,18 @@
+import typing
+
 import requests
 import time
 from abc import ABC, abstractmethod
 
+
 class RequestProcessor(ABC):
+
     def __init__(self, host: str, model_id: str):
         self.host = host
         self.__model_id = model_id
 
     @abstractmethod
-    def handle(self, request):
+    def handle(self, request) -> typing.Any:
         pass
 
     def get_request(self):
@@ -18,7 +22,7 @@ class RequestProcessor(ABC):
 
         if response.status_code == 200 and data["response"] is None:
             request_id = data["id"]
-            query = data["query"]
+            query = data["params"]
             return request_id, query
         else:
             return None, None
@@ -38,9 +42,9 @@ class RequestProcessor(ABC):
 
     def start(self):
         while True:
-            request_id, query = self.get_request()
-            if request_id and query:
-                processed_response = self.handle(query)
+            request_id, params = self.get_request()
+            if request_id and params:
+                processed_response = self.handle(params)
                 self.send_response(request_id, processed_response)
             time.sleep(1)  # Wait for 1 second before checking for the next request
 
