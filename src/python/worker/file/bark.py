@@ -1,7 +1,7 @@
 import typing
 
 from bark import SAMPLE_RATE, generate_audio, preload_models
-import torchaudio
+from scipy.io.wavfile import write
 
 import os
 from datetime import datetime
@@ -37,6 +37,6 @@ class BarkProcessor(FileProcessor):
 		query = request.get("query")
 		audio = generate_audio(query)
 		file_path = os.path.join(self.__tmp_path, self._generate_file_name())
-		torchaudio.save(file_path, audio.cpu(), SAMPLE_RATE)
+		write(file_path, SAMPLE_RATE, audio)
 		return file_path
 
