@@ -1,7 +1,7 @@
 from typing import *
 from abc import ABC, abstractmethod
 
-# import dropbox
+import dropbox
 
 import random
 import os
@@ -45,7 +45,12 @@ class DropboxClient(FileStorage):
 			return meta
 
 	def get_url(self, path) -> str:
-		raise Exception("UnImplemented")
+		path = os.path.join(self.__folder, path)
+
+		links = self.__client.sharing_list_shared_links(path).links
+		if len(links) > 0:
+			return links[0].url
+		return self.__client.sharing_create_shared_link_with_settings(path).url
 
 
 class PCloudClient(FileStorage):
