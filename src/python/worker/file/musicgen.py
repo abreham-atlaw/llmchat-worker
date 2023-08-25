@@ -41,6 +41,7 @@ class MusicGenProcessor(FileProcessor):
 	def __prepare(model_type: str, duration: int, device: str) -> musicgen.MusicGen:
 		model = musicgen.MusicGen.get_pretrained(model_type, device=device)
 		model.set_generation_params(duration=duration)
+		return model
 
 	@staticmethod
 	def _generate_file_name() -> str:
