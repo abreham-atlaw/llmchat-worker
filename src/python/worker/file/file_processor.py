@@ -18,7 +18,7 @@ class FileProcessor(RequestProcessor, ABC):
 
 	def handle(self, request) -> typing.Any:
 		file_path = self.processor_file(request)
-		self.__file_processor.save(file_path)
+		self.__file_processor.upload_file(file_path)
 		url = self.__file_processor.get_url(os.path.basename(file_path))
 		return url
 
