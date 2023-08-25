@@ -46,8 +46,9 @@ class MusicGenProcessor(FileProcessor):
 	def _generate_file_name() -> str:
 		return f"{str(datetime.now().timestamp())}.wav"
 
-	def processor_file(self, request: str) -> str:
-		audio = self._model.generate([request])
+	def processor_file(self, request: typing.Dict) -> str:
+		query = request.get("query")
+		audio = self._model.generate([query])
 		file_path = os.path.join(self.__tmp_path, self._generate_file_name())
 		torchaudio.save(file_path, audio[0].cpu(), 32000)
 		return file_path
