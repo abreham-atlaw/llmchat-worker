@@ -23,6 +23,7 @@ class BarkProcessor(FileProcessor):
 			model_id = model_id
 		super().__init__(host, model_id)
 		self.__tmp_path = tmp_path
+		self.__prepare()
 
 	@staticmethod
 	def __prepare():
