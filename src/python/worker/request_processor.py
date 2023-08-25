@@ -48,4 +48,3 @@ class RequestProcessor(ABC):
                 processed_response = self.handle(params)
                 self.send_response(request_id, processed_response)
             time.sleep(1)  # Wait for 1 second before checking for the next request
-
