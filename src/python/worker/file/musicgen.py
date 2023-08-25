@@ -13,10 +13,10 @@ from worker.file.file_processor import FileProcessor
 class MusicGenProcessor(FileProcessor):
 
 	class ModelType:
-		small = "small"
-		medium = "medium"
-		melody = "melody"
-		large = "large"
+		small = "facebook/musicgen-small"
+		medium = "facebook/musicgen-medium"
+		melody = "facebook/musicgen-melody"
+		large = "facebook/musicgen-large"
 
 	MODEL_ID = "musicgen"
 
