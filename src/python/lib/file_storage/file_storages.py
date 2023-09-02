@@ -49,8 +49,10 @@ class DropboxClient(FileStorage):
 
 		links = self.__client.sharing_list_shared_links(path).links
 		if len(links) > 0:
-			return links[0].url
-		return self.__client.sharing_create_shared_link_with_settings(path).url
+			url = links[0].url
+		else:
+			url = self.__client.sharing_create_shared_link_with_settings(path).url
+		return f"{url}&raw=1"
 
 
 class PCloudClient(FileStorage):
