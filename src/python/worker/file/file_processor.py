@@ -21,5 +21,3 @@ class FileProcessor(RequestProcessor, ABC):
 		self.__file_processor.upload_file(file_path)
 		url = self.__file_processor.get_url(os.path.basename(file_path))
 		return url
-
-
