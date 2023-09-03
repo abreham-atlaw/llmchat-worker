@@ -1,4 +1,7 @@
 import os
 
+PCLOUD_API_KEY = ""
+PCLOUD_PATH = ""
+
 DROPBOX_API_KEY = os.environ["DROPBOX_API_KEY"]
 DROPBOX_FOLDER = "/LLMChat"
