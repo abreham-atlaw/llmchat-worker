@@ -41,5 +41,5 @@ class Llama2Processor(LLMProcessor):
 		)
 
 	def chat(self, query: str) -> str:
-		query = f"Question: {query}\nAnswer: "
+		query = query
 		return self._model(query)
